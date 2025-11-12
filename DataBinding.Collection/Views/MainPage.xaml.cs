@@ -1,21 +1,26 @@
+using DataBinding.Collection.Models;
+using System.Collections.ObjectModel;
+
+
 namespace DataBinding.Collection.Views;
 
 public partial class MainPage : ContentPage
 {
-	private List<OrigenDepaquete> _origenes;
+	private ObservableCollection<OrigenDepaquete> Origenes { get; }
 	public MainPage()
 	{
-		OrigenDepaquete? origenSeleccionado = null;
+		
 		InitializeComponent();
-		_origenes = new List<OrigenDepaquete>();
+		OrigenDepaquete? origenSeleccionado = null;
+		Origenes = new ObservableCollection<OrigenDepaquete>();
 		CargarDatos();
-		OrigenesListView.ItemsSource= _origenes;
-		if (_origenes.Count > 0)
+		OrigenesListView.ItemsSource= Origenes;
+		if (Origenes.Count > 0)
 		{
-			origenSeleccionado = _origenes[0];
+			origenSeleccionado = Origenes[0];
 		}
-        OrigenesListView.ItemsSource = _origenes;
-		OrigenesListView.SelectedItem = origenSeleccionado;
+        //OrigenesListView.ItemsSource = Origenes;
+		//OrigenesListView.SelectedItem = origenSeleccionado;
 
 
     }
@@ -23,13 +28,13 @@ public partial class MainPage : ContentPage
 
 	private void CargarDatos()
 	{
-		_origenes.Add(new OrigenDepaquete
+		Origenes.Add(new OrigenDepaquete
 		{
 			Nombre = "nuget.org",
 			Origen = "https://Api.Nuget.Org/v3/Index.json",
 			EstaHabilitado = true,
 		});
-        _origenes.Add(new OrigenDepaquete
+        Origenes.Add(new OrigenDepaquete
         {
             Nombre = "Microsoft visual studio offline packages",
             Origen = "C:\\Program Files(x86)\\Microsoft sdks\\Nugetpackages",
@@ -44,15 +49,17 @@ public partial class MainPage : ContentPage
 
     private void OnAgregarButtonClicked(object sender, EventArgs e)
     {
-        _origenes.Add(new OrigenDepaquete
+        var origen = new OrigenDepaquete 
         {
             Nombre = "Orige del  paquete ",
             Origen = "URL o ruta del origen del paquete",
             EstaHabilitado = false,
-        });
-		OrigenesListView.ItemsSource = null;
-		OrigenesListView.ItemsSource = _origenes;
-		OrigenesListView.SelectedItem= _origenes[0];
+        };
+		Origenes.Add(origen);
+		
+		//OrigenesListView.ItemsSource = null;
+		//OrigenesListView.ItemsSource = _origenes;
+		//OrigenesListView.SelectedItem= origen;
 
 
 
@@ -61,27 +68,26 @@ public partial class MainPage : ContentPage
 
     private void OnDeleteButtonClicked(object sender, EventArgs e)
     {
-		
-		
-		OrigenDepaquete seleccionado =
-			  (OrigenDepaquete)OrigenesListView.SelectedItem;
+		//OrigenDepaquete seleccionado =
+		//	  (OrigenDepaquete)OrigenesListView.SelectedItem;
 
+		OrigenDepaquete seleccionado = null;
 		if (seleccionado == null)
 		{
-			var indice = _origenes.IndexOf(seleccionado);
+			var indice = Origenes.IndexOf(seleccionado);
 			OrigenDepaquete? nuevoseleccionado;
-			if (_origenes.Count > 1)
+			if (Origenes.Count > 1)
 			{
 				// hay mas de un elemento
-				if (indice < _origenes.Count - 1)
+				if (indice < Origenes.Count - 1)
 				{
 					// el elemento seleccionado no es el ultimo
-					nuevoseleccionado = _origenes[indice + 1];
+					nuevoseleccionado = Origenes[indice + 1];
 				}
 				else
 				{
 					// el elemento seleccionado es el ultimo
-					nuevoseleccionado = _origenes[indice - 1];
+					nuevoseleccionado = Origenes[indice - 1];
 				}
 			}
 			else
@@ -89,11 +95,11 @@ public partial class MainPage : ContentPage
 				// solo hay un elemento
 				nuevoseleccionado = null;
 			}
-            _origenes.Remove(seleccionado);
-            OrigenesListView.ItemsSource = null;
-            OrigenesListView.ItemsSource = _origenes;
-			OrigenesListView.SelectedItem = nuevoseleccionado;
-        }
+			//Origenes.Remove(seleccionado);
+			//OrigenesListView.ItemsSource = null;
+			//OrigenesListView.ItemsSource = Origenes;
+			//OrigenesListView.SelectedItem = nuevoseleccionado;
+		}
 		
 
     }
@@ -124,7 +130,7 @@ public partial class MainPage : ContentPage
 			origenSelecionado.Nombre = NombreEntry.Text;
 			origenSelecionado.Origen = OrigenEntry.Text;
             OrigenesListView.ItemsSource = null;
-            OrigenesListView.ItemsSource = _origenes;
+            OrigenesListView.ItemsSource = Origenes;
             OrigenesListView.SelectedItem = origenSelecionado;
         }
 
