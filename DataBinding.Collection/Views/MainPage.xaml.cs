@@ -6,6 +6,7 @@ namespace DataBinding.Collection.Views;
 
 public partial class MainPage : ContentPage
 {
+<<<<<<< HEAD
 	public ObservableCollection<OrigenDepaquete> Origenes { get; }
 	private OrigenDepaquete? _origenSeleccionado = null;
 	private string _nombreDelOrigen = string.Empty;
@@ -61,6 +62,22 @@ public partial class MainPage : ContentPage
 			OrigenSeleccionado = Origenes[0];
 		}
 		//OrigenesListView.ItemsSource = Origenes;
+=======
+	private ObservableCollection<OrigenDepaquete> Origenes { get; }
+	public MainPage()
+	{
+		
+		InitializeComponent();
+		OrigenDepaquete? origenSeleccionado = null;
+		Origenes = new ObservableCollection<OrigenDepaquete>();
+		CargarDatos();
+		OrigenesListView.ItemsSource= Origenes;
+		if (Origenes.Count > 0)
+		{
+			origenSeleccionado = Origenes[0];
+		}
+        //OrigenesListView.ItemsSource = Origenes;
+>>>>>>> 9981e94724039b7cd24707fc2d8e1dfafc199c06
 		//OrigenesListView.SelectedItem = origenSeleccionado;
 
 
@@ -75,6 +92,7 @@ public partial class MainPage : ContentPage
 			Origen = "https://Api.Nuget.Org/v3/Index.json",
 			EstaHabilitado = true,
 		});
+<<<<<<< HEAD
 		Origenes.Add(new OrigenDepaquete
 		{
 			Nombre = "Microsoft visual studio offline packages",
@@ -108,6 +126,49 @@ public partial class MainPage : ContentPage
 		if (OrigenSeleccionado != null)
 		{
 			var indice = Origenes.IndexOf(OrigenSeleccionado);
+=======
+        Origenes.Add(new OrigenDepaquete
+        {
+            Nombre = "Microsoft visual studio offline packages",
+            Origen = "C:\\Program Files(x86)\\Microsoft sdks\\Nugetpackages",
+            EstaHabilitado = false,
+        });
+		
+
+
+
+
+    }
+
+    private void OnAgregarButtonClicked(object sender, EventArgs e)
+    {
+        var origen = new OrigenDepaquete 
+        {
+            Nombre = "Orige del  paquete ",
+            Origen = "URL o ruta del origen del paquete",
+            EstaHabilitado = false,
+        };
+		Origenes.Add(origen);
+		
+		//OrigenesListView.ItemsSource = null;
+		//OrigenesListView.ItemsSource = _origenes;
+		//OrigenesListView.SelectedItem= origen;
+
+
+
+
+    }
+
+    private void OnDeleteButtonClicked(object sender, EventArgs e)
+    {
+		//OrigenDepaquete seleccionado =
+		//	  (OrigenDepaquete)OrigenesListView.SelectedItem;
+
+		OrigenDepaquete seleccionado = null;
+		if (seleccionado == null)
+		{
+			var indice = Origenes.IndexOf(seleccionado);
+>>>>>>> 9981e94724039b7cd24707fc2d8e1dfafc199c06
 			OrigenDepaquete? nuevoseleccionado;
 			if (Origenes.Count > 1)
 			{
@@ -132,9 +193,14 @@ public partial class MainPage : ContentPage
 			//OrigenesListView.ItemsSource = null;
 			//OrigenesListView.ItemsSource = Origenes;
 			//OrigenesListView.SelectedItem = nuevoseleccionado;
+<<<<<<< HEAD
 			Origenes.Remove(OrigenSeleccionado);
 			OrigenSeleccionado = nuevoseleccionado;
 		}
+=======
+		}
+		
+>>>>>>> 9981e94724039b7cd24707fc2d8e1dfafc199c06
 
 
 	}
@@ -159,8 +225,17 @@ public partial class MainPage : ContentPage
 
 		if (OrigenSeleccionado != null)
 		{
+<<<<<<< HEAD
 			OrigenSeleccionado.Nombre = NombreEntry.Text;
 			OrigenSeleccionado.Origen = OrigenEntry.Text;
+=======
+			origenSelecionado.Nombre = NombreEntry.Text;
+			origenSelecionado.Origen = OrigenEntry.Text;
+            OrigenesListView.ItemsSource = null;
+            OrigenesListView.ItemsSource = Origenes;
+            OrigenesListView.SelectedItem = origenSelecionado;
+        }
+>>>>>>> 9981e94724039b7cd24707fc2d8e1dfafc199c06
 
 
 		}

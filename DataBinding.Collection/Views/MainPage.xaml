@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<<<<<<< HEAD
              xmlns:Views="clr-namespace:DataBinding.Collection.Views"
              xmlns:models="clr-namespace:DataBinding.Collection.Models"
              x:DataType="Views:MainPage"
+=======
+             xmlns:models="clr-namespace:DataBinding.Collection.Views"
+>>>>>>> 9981e94724039b7cd24707fc2d8e1dfafc199c06
              x:Class="DataBinding.Collection.Views.MainPage"
              Title="MainPage"
              >
@@ -43,7 +47,11 @@
         <CollectionView
             Grid.Row="1"
             BackgroundColor="DimGray"
+<<<<<<< HEAD
             ItemsSource="{Binding Origenes}"
+=======
+            ItemsSource="{Binding Path=Origenes}"
+>>>>>>> 9981e94724039b7cd24707fc2d8e1dfafc199c06
             SelectionMode="Single"
             SelectedItem="{Binding OrigenSeleccionado}"
             SelectionChanged="OrigenesListView_SelectionChanged"
@@ -58,6 +66,7 @@
                             ColumnDefinitions="Auto,Auto">
                             <CheckBox
                                 Grid.RowSpan="2"
+<<<<<<< HEAD
                                 IsChecked="{Binding EstaHabilitado}"
                                 />
                             <Label
@@ -67,6 +76,16 @@
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Text="{Binding Origen}"/>
+=======
+                                IsChecked="False"/>
+                            <Label
+                                Grid.Column="1"
+                                Text="Empty"/>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="Empty 2"/>
+>>>>>>> 9981e94724039b7cd24707fc2d8e1dfafc199c06
 
                         </Grid>
                     </Border>
