@@ -1,4 +1,4 @@
-﻿namespace DataBinding.Collection
+﻿namespace DataBinding.Collection.Models
 {
     public class OrigenDepaquete
     {
@@ -11,5 +11,6 @@
             return $"{Nombre} - ({Origen})";
         }
     }
+   
    
 }
